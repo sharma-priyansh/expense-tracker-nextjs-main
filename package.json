@@ -1,0 +1,27 @@
+{
+  "name": "expense-tracker-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^5.1.6",
+    "@prisma/client": "^5.15.1",
+    "next": "14.2.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-toastify": "^10.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "prisma": "^5.15.1",
+    "typescript": "^5"
+  }
+}
