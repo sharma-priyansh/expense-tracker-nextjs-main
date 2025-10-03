@@ -42,6 +42,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
         onClick={() => handleDeleteTransaction(transaction.id)}
         className='delete-btn'
         disabled={isDeleting}
+        aria-label='Delete transaction'
       >
         {isDeleting ? <Spinner size={12} /> : 'x'}
       </button>
