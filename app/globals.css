@@ -1,5 +1,11 @@
 :root {
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --primary: #9c88ff;
+  --primary-dark: #7f6ef0;
+  --danger: #e74c3c;
+  --danger-dark: #c43a2a;
+  --muted: #dedede;
+  --btn-transition: 180ms cubic-bezier(.2,.9,.3,1);
 }
 
 * {
@@ -35,14 +41,27 @@ body {
 .guest button {
   border: 0;
   border-radius: 5px;
-  background: rebeccapurple;
+  background: var(--primary);
   color: #fff;
   padding: 0.5rem 2rem;
   cursor: pointer;
+  transition: transform var(--btn-transition), background-color var(--btn-transition), box-shadow var(--btn-transition), opacity var(--btn-transition);
 }
 
-.navbar button:hover {
-  opacity: 0.9;
+.navbar button:hover,
+.guest button:hover,
+.navbar button:active,
+.guest button:active {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  opacity: 1;
+}
+
+.navbar button:focus-visible,
+.guest button:focus-visible {
+  outline: 3px solid rgba(156,136,255,0.18);
+  outline-offset: 2px;
 }
 
 .navbar-container {
@@ -134,7 +153,7 @@ input[type='number'] {
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: var(--primary);
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -143,11 +162,30 @@ input[type='number'] {
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+  transition: transform var(--btn-transition), background-color var(--btn-transition), box-shadow var(--btn-transition), opacity var(--btn-transition);
 }
 
-.btn:focus,
-.delete-btn:focus {
-  outline: 0;
+.btn:hover,
+.btn:active {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(156,136,255,0.18);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.delete-btn:focus,
+.delete-btn:focus-visible {
+  outline: 3px solid rgba(231,76,60,0.16);
+  outline-offset: 2px;
 }
 
 .list {
