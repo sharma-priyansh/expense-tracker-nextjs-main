@@ -1,11 +1,12 @@
 :root {
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   --primary: #9c88ff;
-  --primary-dark: #7f6ef0;
+  --primary-600: #7f6ef0;
   --danger: #e74c3c;
-  --danger-dark: #c43a2a;
+  --danger-600: #c43a2a;
   --muted: #dedede;
-  --btn-transition: 180ms cubic-bezier(.2,.9,.3,1);
+  --btn-ease: cubic-bezier(.2,.9,.3,1);
+  --btn-duration: 220ms;
 }
 
 * {
@@ -40,28 +41,31 @@ body {
 .navbar button,
 .guest button {
   border: 0;
-  border-radius: 5px;
+  border-radius: 8px;
   background: var(--primary);
   color: #fff;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.25rem;
   cursor: pointer;
-  transition: transform var(--btn-transition), background-color var(--btn-transition), box-shadow var(--btn-transition), opacity var(--btn-transition);
+  box-shadow: 0 6px 16px rgba(124, 108, 240, 0.12);
+  transition: transform var(--btn-duration) var(--btn-ease), box-shadow var(--btn-duration) var(--btn-ease), background-color var(--btn-duration) var(--btn-ease), opacity var(--btn-duration) var(--btn-ease);
 }
 
 .navbar button:hover,
-.guest button:hover,
+.guest button:hover {
+  transform: translateY(-3px) scale(1.01);
+  background: var(--primary-600);
+  box-shadow: 0 10px 30px rgba(124, 108, 240, 0.16);
+}
+
 .navbar button:active,
 .guest button:active {
-  background-color: var(--primary-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  opacity: 1;
+  transform: translateY(0) scale(0.995);
 }
 
 .navbar button:focus-visible,
 .guest button:focus-visible {
-  outline: 3px solid rgba(156,136,255,0.18);
-  outline-offset: 2px;
+  outline: 3px solid rgba(124, 108, 240, 0.18);
+  outline-offset: 3px;
 }
 
 .navbar-container {
@@ -160,26 +164,34 @@ input[type='number'] {
   display: block;
   font-size: 16px;
   margin: 10px 0 30px;
-  padding: 10px;
+  padding: 12px 14px;
   width: 100%;
-  transition: transform var(--btn-transition), background-color var(--btn-transition), box-shadow var(--btn-transition), opacity var(--btn-transition);
+  border-radius: 8px;
+  transition: transform var(--btn-duration) var(--btn-ease), box-shadow var(--btn-duration) var(--btn-ease), background-color var(--btn-duration) var(--btn-ease), opacity var(--btn-duration) var(--btn-ease);
 }
 
-.btn:hover,
+.btn:hover {
+  transform: translateY(-3px);
+  background-color: var(--primary-600);
+  box-shadow: 0 12px 30px rgba(124,108,240,0.14);
+}
+
 .btn:active {
-  background-color: var(--primary-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transform: translateY(0) scale(0.997);
 }
 
 .btn:focus-visible {
-  outline: 3px solid rgba(156,136,255,0.18);
-  outline-offset: 2px;
+  outline: 3px solid rgba(124,108,240,0.18);
+  outline-offset: 3px;
 }
 
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+@media (prefers-reduced-motion: reduce) {
+  .navbar button,
+  .guest button,
+  .btn {
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 .delete-btn:focus,
@@ -215,20 +227,42 @@ input[type='number'] {
 
 .delete-btn {
   cursor: pointer;
-  background-color: #e74c3c;
+  background-color: var(--danger);
   border: 0;
   color: #fff;
   font-size: 20px;
   line-height: 20px;
-  padding: 2px 5px;
+  padding: 2px 6px;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translate(-100%, -50%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 220ms var(--btn-ease), transform 220ms var(--btn-ease);
 }
 
 .list li:hover .delete-btn {
   opacity: 1;
+  transform: translate(-110%, -50%) scale(1.02);
+}
+
+/* Simple left-side 'Delete' label (text only, opens left of the X) */
+.delete-btn::after {
+  content: 'Delete';
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  color: var(--danger);
+  font-weight: 600;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms var(--btn-ease), transform 160ms var(--btn-ease);
+}
+
+.delete-btn:hover::after,
+.delete-btn:focus-visible::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
