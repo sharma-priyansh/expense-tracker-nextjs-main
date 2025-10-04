@@ -1,3 +1,5 @@
+**Expense Tracker Next.js** is a simple web application for tracking personal expenses, built with Next.js and integrated with Clerk for authentication and Neon for database hosting. It allows users to record, view, and manage their expenses efficiently.
+
 ## Usage
 
 ### Install dependencies:
