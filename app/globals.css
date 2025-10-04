@@ -1,5 +1,6 @@
 :root {
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+<<<<<<< HEAD
   --primary: #9c88ff;
   --primary-600: #7f6ef0;
   --danger: #e74c3c;
@@ -7,6 +8,22 @@
   --muted: #dedede;
   --btn-ease: cubic-bezier(.2,.9,.3,1);
   --btn-duration: 220ms;
+=======
+  --box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  --box-shadow-active: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.15);
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-active: #4338ca;
+  --success-color: #059669;
+  --success-hover: #047857;
+  --danger-color: #dc2626;
+  --danger-hover: #b91c1c;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --border-color: #d1d5db;
+  --border-hover: #9ca3af;
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
 }
 
 * {
@@ -14,13 +31,17 @@
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: #f9fafb;
   min-height: 100vh;
   margin: 0;
   font-family: 'Lato', sans-serif;
+<<<<<<< HEAD
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden; /* defensive: avoid horizontal scroll and content shifting */
+=======
+  color: var(--text-primary);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
 }
 
 .container {
@@ -37,39 +58,64 @@ body {
 }
 
 .navbar {
+<<<<<<< HEAD
   background: #000;
   color: #fff;
   display: block;
   width: 100%;
   box-sizing: border-box;
   padding: 0.25rem 0; /* give the bar a bit of vertical spacing */
+=======
+  background: #1f2937;
+  color: #ffffff;
+  box-shadow: var(--box-shadow);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
 }
 
 .navbar a {
-  color: #fff;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .navbar button,
 .guest button {
   border: 0;
   border-radius: 8px;
+<<<<<<< HEAD
   background: var(--primary);
   color: #fff;
   padding: 0.5rem 1.25rem;
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(124, 108, 240, 0.12);
   transition: transform var(--btn-duration) var(--btn-ease), box-shadow var(--btn-duration) var(--btn-ease), background-color var(--btn-duration) var(--btn-ease), opacity var(--btn-duration) var(--btn-ease);
+=======
+  background: var(--primary-color);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: var(--box-shadow);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
 }
 
 .navbar button:hover,
 .guest button:hover {
+<<<<<<< HEAD
   transform: translateY(-3px) scale(1.01);
   background: var(--primary-600);
   box-shadow: 0 10px 30px rgba(124, 108, 240, 0.16);
+=======
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow-hover);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
 }
 
 .navbar button:active,
 .guest button:active {
+<<<<<<< HEAD
   transform: translateY(0) scale(0.995);
 }
 
@@ -77,6 +123,10 @@ body {
 .guest button:focus-visible {
   outline: 3px solid rgba(124, 108, 240, 0.18);
   outline-offset: 3px;
+=======
+  transform: translateY(0);
+  box-shadow: var(--box-shadow-active);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
 }
 
 .navbar-container {
@@ -153,36 +203,59 @@ body {
 h1 {
   letter-spacing: 1px;
   margin: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+h2 {
+  color: #ffffff;
+  font-weight: 600;
 }
 
 h3 {
-  border-bottom: 1px solid #bbb;
+  border-bottom: 2px solid var(--border-color);
   padding-bottom: 10px;
   margin: 40px 0 10px;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 h4 {
   margin: 0;
   text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .guest {
   text-align: center;
+  padding: 2rem;
+}
+
+.guest p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 16px;
 }
 
 .error {
-  background: red;
-  color: #fff;
-  padding: 3px;
+  background: var(--danger-color);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 500;
 }
 
 .inc-exp-container {
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: var(--box-shadow);
-  padding: 20px;
+  padding: 24px;
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
 }
 
 .inc-exp-container > div {
@@ -198,39 +271,63 @@ h4 {
   font-size: 20px;
   letter-spacing: 1px;
   margin: 5px 0;
+  font-weight: 600;
 }
 
 .money.plus {
-  color: #2ecc71;
+  color: var(--success-color);
 }
 
 .money.minus {
-  color: #c0392b;
+  color: var(--danger-color);
 }
 
 label {
   display: inline-block;
-  margin: 10px 0;
+  margin: 10px 0 6px 0;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 14px;
 }
 
 input[type='text'],
 input[type='number'] {
-  border: 1px solid #dedede;
-  border-radius: 2px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
   display: block;
   font-size: 16px;
-  padding: 10px;
+  padding: 12px;
   width: 100%;
+  background-color: #ffffff;
+  color: var(--text-primary);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input[type='text']:focus,
+input[type='number']:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+input[type='text']:hover,
+input[type='number']:hover {
+  border-color: var(--border-hover);
 }
 
 .btn {
   cursor: pointer;
+<<<<<<< HEAD
   background-color: var(--primary);
+=======
+  background-color: var(--primary-color);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
   box-shadow: var(--box-shadow);
-  color: #fff;
+  color: #ffffff;
   border: 0;
   display: block;
   font-size: 16px;
+<<<<<<< HEAD
   margin: 10px 0 30px;
   padding: 12px 14px;
   width: 100%;
@@ -266,6 +363,30 @@ input[type='number'] {
 .delete-btn:focus-visible {
   outline: 3px solid rgba(231,76,60,0.16);
   outline-offset: 2px;
+=======
+  font-weight: 500;
+  margin: 20px 0 30px;
+  padding: 14px;
+  width: 100%;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--box-shadow-active);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
 }
 
 .list {
@@ -275,38 +396,73 @@ input[type='number'] {
 }
 
 .list li {
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: var(--box-shadow);
-  color: #333;
+  color: var(--text-primary);
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.list li:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--border-hover);
 }
 
 .list li.plus {
-  border-right: 5px solid #2ecc71;
+  border-right: 4px solid var(--success-color);
 }
 
 .list li.minus {
-  border-right: 5px solid #c0392b;
+  border-right: 4px solid var(--danger-color);
 }
 
 .delete-btn {
   cursor: pointer;
+<<<<<<< HEAD
   background-color: var(--danger);
+=======
+  background-color: var(--danger-color);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
   border: 0;
-  color: #fff;
-  font-size: 20px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 20px;
+<<<<<<< HEAD
   padding: 2px 6px;
+=======
+  padding: 6px 8px;
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
   position: absolute;
   top: 50%;
   left: 0;
   transform: translate(-100%, -50%);
   opacity: 0;
+<<<<<<< HEAD
   transition: opacity 220ms var(--btn-ease), transform 220ms var(--btn-ease);
+=======
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow);
+}
+
+.delete-btn:hover {
+  background-color: var(--danger-hover);
+  transform: translate(-100%, -50%) scale(1.1);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.delete-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+>>>>>>> 65943a4 (feat: improve color contrast and add beautiful hover states)
 }
 
 .list li:hover .delete-btn {
