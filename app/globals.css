@@ -18,20 +18,31 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* defensive: avoid horizontal scroll and content shifting */
 }
 
 .container {
   margin: 30px auto;
-  width: 350px;
+  /* fluid, centered layout: fixed max width but responsive on small screens */
+  width: calc(100% - 48px);
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 0 16px;
 }
 
 .navbar {
   background: #000;
   color: #fff;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.25rem 0; /* give the bar a bit of vertical spacing */
 }
 
 .navbar a {
@@ -75,6 +86,63 @@ body {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 2rem;
+  background: transparent; /* ensure black color comes from .navbar */
+}
+
+/* Defensive: make sure navbar always stretches across the viewport on very small screens */
+@media (max-width: 480px) {
+  .navbar {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .navbar-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* Mobile navigation improvements: larger touch targets and stacked layout */
+@media (max-width: 640px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar-container h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.125rem;
+    padding: 0.25rem 0;
+  }
+
+  .nav-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+    width: 100%;
+    padding: 0.25rem 0;
+  }
+
+  /* Ensure all buttons in nav-actions are easy to tap */
+  .nav-actions button,
+  .nav-actions .cl-button,
+  .nav-actions [role='button'] {
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Slightly reduce shadow on mobile for legibility */
+  .nav-actions button { box-shadow: 0 6px 14px rgba(124,108,240,0.10); }
 }
 
 .navbar .cl-button {
