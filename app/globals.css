@@ -14,7 +14,7 @@
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: #f9fafb;
   min-height: 100vh;
   margin: 0;
   font-family: 'Lato', sans-serif;
@@ -46,7 +46,8 @@ body {
 }
 
 .navbar a {
-  color: #fff;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .navbar button,
@@ -89,7 +90,25 @@ body {
   background: transparent; /* ensure black color comes from .navbar */
 }
 
-/* Defensive: make sure navbar always stretches across the viewport on very small screens */
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 56px;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.navbar-container h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
 @media (max-width: 480px) {
   .navbar {
     padding-left: 0.5rem;
@@ -101,39 +120,37 @@ body {
   }
 }
 
-/* Mobile navigation improvements: larger touch targets and stacked layout */
+
 @media (max-width: 640px) {
   .navbar-container {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
   }
 
+  
   .navbar-container h2 {
+    flex: 1 1 auto;
     text-align: center;
-    margin: 0;
     font-size: 1.125rem;
-    padding: 0.25rem 0;
   }
 
-  .nav-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: stretch;
-    width: 100%;
-    padding: 0.25rem 0;
+  .nav-left {
+    flex: 0 0 auto;
   }
 
-  /* Ensure all buttons in nav-actions are easy to tap */
-  .nav-actions button,
-  .nav-actions .cl-button,
-  .nav-actions [role='button'] {
-    min-height: 44px;
-    padding: 0.65rem 1rem;
-    font-size: 16px;
-    width: 100%;
+  .nav-right {
+    flex: 0 0 auto;
+  }
+
+  
+  .navbar .cl-button,
+  .navbar [role='button'],
+  .navbar button {
+    min-height: 40px;
+    padding: 0.45rem 0.9rem;
+    font-size: 15px;
     border-radius: 10px;
     display: inline-flex;
     align-items: center;
@@ -141,8 +158,37 @@ body {
     box-sizing: border-box;
   }
 
-  /* Slightly reduce shadow on mobile for legibility */
   .nav-actions button { box-shadow: 0 6px 14px rgba(124,108,240,0.10); }
+}
+
+
+.navbar .cl-user-button,
+.navbar .cl-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Make sure the avatar inside the button stays proportional */
+.navbar .cl-button img,
+.navbar .cl-user-button img,
+.navbar .cl-button svg {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  object-fit: cover !important;
+}
+
+/* Subtle gradient under header for a modern look */
+.navbar {
+  background: linear-gradient(180deg, #000000 0%, rgba(0,0,0,0.85) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.02);
 }
 
 .navbar .cl-button {
@@ -153,36 +199,59 @@ body {
 h1 {
   letter-spacing: 1px;
   margin: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+h2 {
+  color: #ffffff;
+  font-weight: 600;
 }
 
 h3 {
-  border-bottom: 1px solid #bbb;
+  border-bottom: 2px solid var(--border-color);
   padding-bottom: 10px;
   margin: 40px 0 10px;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 h4 {
   margin: 0;
   text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .guest {
   text-align: center;
+  padding: 2rem;
+}
+
+.guest p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 16px;
 }
 
 .error {
-  background: red;
-  color: #fff;
-  padding: 3px;
+  background: var(--danger-color);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 500;
 }
 
 .inc-exp-container {
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: var(--box-shadow);
-  padding: 20px;
+  padding: 24px;
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
 }
 
 .inc-exp-container > div {
@@ -198,19 +267,23 @@ h4 {
   font-size: 20px;
   letter-spacing: 1px;
   margin: 5px 0;
+  font-weight: 600;
 }
 
 .money.plus {
-  color: #2ecc71;
+  color: var(--success-color);
 }
 
 .money.minus {
-  color: #c0392b;
+  color: var(--danger-color);
 }
 
 label {
   display: inline-block;
-  margin: 10px 0;
+  margin: 10px 0 6px 0;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 14px;
 }
 
 input[type='text'],
@@ -219,8 +292,23 @@ input[type='number'] {
   border-radius: 8px;
   display: block;
   font-size: 16px;
-  padding: 10px;
+  padding: 12px;
   width: 100%;
+  background-color: #ffffff;
+  color: var(--text-primary);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input[type='text']:focus,
+input[type='number']:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+input[type='text']:hover,
+input[type='number']:hover {
+  border-color: var(--border-hover);
 }
 
 select {
@@ -284,7 +372,7 @@ select {
   cursor: pointer;
   background-color: var(--primary);
   box-shadow: var(--box-shadow);
-  color: #fff;
+  color: #ffffff;
   border: 0;
   display: block;
   font-size: 16px;
@@ -332,30 +420,40 @@ select {
 }
 
 .list li {
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: var(--box-shadow);
-  color: #333;
+  color: var(--text-primary);
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.list li:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--border-hover);
 }
 
 .list li.plus {
-  border-right: 5px solid #2ecc71;
+  border-right: 4px solid var(--success-color);
 }
 
 .list li.minus {
-  border-right: 5px solid #c0392b;
+  border-right: 4px solid var(--danger-color);
 }
 
 .delete-btn {
   cursor: pointer;
   background-color: var(--danger);
   border: 0;
-  color: #fff;
-  font-size: 20px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 20px;
   padding: 2px 6px;
   position: absolute;
