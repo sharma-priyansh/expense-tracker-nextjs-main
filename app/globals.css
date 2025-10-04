@@ -89,7 +89,25 @@ body {
   background: transparent; /* ensure black color comes from .navbar */
 }
 
-/* Defensive: make sure navbar always stretches across the viewport on very small screens */
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 56px;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.navbar-container h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
 @media (max-width: 480px) {
   .navbar {
     padding-left: 0.5rem;
@@ -101,39 +119,37 @@ body {
   }
 }
 
-/* Mobile navigation improvements: larger touch targets and stacked layout */
+
 @media (max-width: 640px) {
   .navbar-container {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
   }
 
+  
   .navbar-container h2 {
+    flex: 1 1 auto;
     text-align: center;
-    margin: 0;
     font-size: 1.125rem;
-    padding: 0.25rem 0;
   }
 
-  .nav-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: stretch;
-    width: 100%;
-    padding: 0.25rem 0;
+  .nav-left {
+    flex: 0 0 auto;
   }
 
-  /* Ensure all buttons in nav-actions are easy to tap */
-  .nav-actions button,
-  .nav-actions .cl-button,
-  .nav-actions [role='button'] {
-    min-height: 44px;
-    padding: 0.65rem 1rem;
-    font-size: 16px;
-    width: 100%;
+  .nav-right {
+    flex: 0 0 auto;
+  }
+
+  
+  .navbar .cl-button,
+  .navbar [role='button'],
+  .navbar button {
+    min-height: 40px;
+    padding: 0.45rem 0.9rem;
+    font-size: 15px;
     border-radius: 10px;
     display: inline-flex;
     align-items: center;
@@ -141,8 +157,37 @@ body {
     box-sizing: border-box;
   }
 
-  /* Slightly reduce shadow on mobile for legibility */
   .nav-actions button { box-shadow: 0 6px 14px rgba(124,108,240,0.10); }
+}
+
+
+.navbar .cl-user-button,
+.navbar .cl-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Make sure the avatar inside the button stays proportional */
+.navbar .cl-button img,
+.navbar .cl-user-button img,
+.navbar .cl-button svg {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  object-fit: cover !important;
+}
+
+/* Subtle gradient under header for a modern look */
+.navbar {
+  background: linear-gradient(180deg, #000000 0%, rgba(0,0,0,0.85) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.02);
 }
 
 .navbar .cl-button {
