@@ -1,11 +1,15 @@
-'use client';
+"use client";
+import { useState } from 'react';
 import { Transaction } from '@/types/Transaction';
 import { addCommas } from '@/lib/utils';
 import { toast } from 'react-toastify';
 import deleteTransaction from '@/app/actions/deleteTransaction';
+import Spinner from './Spinner';
 
 const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
   const sign = transaction.amount < 0 ? '-' : '+';
+
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDeleteTransaction = async (transactionId: string) => {
     const confirmed = window.confirm(
@@ -14,13 +18,18 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
 
     if (!confirmed) return;
 
-    const { message, error } = await deleteTransaction(transactionId);
+    setIsDeleting(true);
+    try {
+      const { message, error } = await deleteTransaction(transactionId);
 
-    if (error) {
-      toast.error(error);
+      if (error) {
+        toast.error(error);
+      } else {
+        toast.success(message);
+      }
+    } finally {
+      setIsDeleting(false);
     }
-
-    toast.success(message);
   };
 
   return (
@@ -32,9 +41,10 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
       <button
         onClick={() => handleDeleteTransaction(transaction.id)}
         className='delete-btn'
+        disabled={isDeleting}
         aria-label='Delete transaction'
       >
-        x
+        {isDeleting ? <Spinner size={12} /> : 'x'}
       </button>
     </li>
   );
