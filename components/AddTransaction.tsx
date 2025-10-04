@@ -60,6 +60,16 @@ const AddTransaction = () => {
             disabled={isSubmitting}
           />
         </div>
+        <div className='form-control'>
+          <label htmlFor='category'>Category</label>
+          <input
+            type='text'
+            id='category'
+            name='category'
+            placeholder='e.g. Food, Travel, Utilities (optional)'
+            disabled={isSubmitting}
+          />
+        </div>
         <button className='btn' disabled={isSubmitting}>
           {isSubmitting ? (
             <>

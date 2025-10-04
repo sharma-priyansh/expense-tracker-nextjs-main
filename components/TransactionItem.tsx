@@ -34,7 +34,12 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
 
   return (
     <li className={transaction.amount < 0 ? 'minus' : 'plus'}>
-      {transaction.text}
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <span>{transaction.text}</span>
+        {transaction.category ? (
+          <small style={{ opacity: 0.8 }}>{transaction.category}</small>
+        ) : null}
+      </div>
       <span>
         {sign}${addCommas(Math.abs(transaction.amount))}
       </span>

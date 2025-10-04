@@ -14,12 +14,22 @@ async function getTransactions(): Promise<{
   }
 
   try {
-    const transactions = await db.transaction.findMany({
+    const transactionsRaw = await db.transaction.findMany({
       where: { userId },
       orderBy: {
         createdAt: 'desc',
       },
     });
+
+    // Serialize dates to strings for transfer to client components
+    const transactions = transactionsRaw.map((t) => ({
+      id: t.id,
+      text: t.text,
+      amount: t.amount,
+      userId: t.userId,
+      category: (t as any).category ?? null,
+      createdAt: t.createdAt.toISOString(),
+    }));
 
     return { transactions };
   } catch (error) {
