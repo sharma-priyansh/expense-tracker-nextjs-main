@@ -5,6 +5,7 @@ import { addCommas } from '@/lib/utils';
 import { toast } from 'react-toastify';
 import deleteTransaction from '@/app/actions/deleteTransaction';
 import Spinner from './Spinner';
+import { CATEGORY_COLORS } from '@/lib/categories';
 
 const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
   const sign = transaction.amount < 0 ? '-' : '+';
@@ -34,7 +35,30 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
 
   return (
     <li className={transaction.amount < 0 ? 'minus' : 'plus'}>
-      {transaction.text}
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <span>{transaction.text}</span>
+        {transaction.category ? (
+          <span
+            className='category-badge'
+            style={{
+              background: 'transparent',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: 999,
+                background: CATEGORY_COLORS[transaction.category] || 'rgba(0,0,0,0.12)'}}
+            />
+            <span style={{ fontSize: 12 }}>{transaction.category}</span>
+          </span>
+        ) : null}
+      </div>
       <span>
         {sign}${addCommas(Math.abs(transaction.amount))}
       </span>

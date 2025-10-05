@@ -1,14 +1,17 @@
-'use client';
+ 'use client';
 import { useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import addTransaction from '@/app/actions/addTransaction';
 import { toast } from 'react-toastify';
 import Spinner from './Spinner';
+import CATEGORIES, { CATEGORY_COLORS } from '@/lib/categories';
 
 const AddTransaction = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [customCategory, setCustomCategory] = useState<string>('');
 
   const clientAction = async (formData: FormData) => {
     setIsSubmitting(true);
@@ -59,6 +62,60 @@ const AddTransaction = () => {
             step='0.01'
             disabled={isSubmitting}
           />
+        </div>
+        <div className='form-control'>
+          <label htmlFor='category'>Category</label>
+          <select
+            id='category'
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            disabled={isSubmitting}
+          >
+            <option value=''>Select category (optional)</option>
+            {CATEGORIES.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+            <option value='__other'>Other (custom)...</option>
+          </select>
+
+          {selectedCategory === '__other' ? (
+            <input
+              type='text'
+              id='category-custom'
+              placeholder='Enter custom category'
+              value={customCategory}
+              onChange={(e) => setCustomCategory(e.target.value)}
+              disabled={isSubmitting}
+              style={{ marginTop: 8 }}
+            />
+          ) : null}
+
+          {/* Hidden input holds the final category value submitted with the form */}
+          <input
+            type='hidden'
+            name='category'
+            value={
+              selectedCategory === ''
+                ? ''
+                : selectedCategory === '__other'
+                ? customCategory
+                : selectedCategory
+            }
+          />
+          {/* Compact legend under the category select to show color hints */}
+          <div style={{ marginTop: 8 }} className='category-legend' aria-hidden>
+            {CATEGORIES.map((c) => (
+              <div key={c} className='legend-item' title={c}>
+                <span
+                  className='legend-chip'
+                  style={{ background: CATEGORY_COLORS[c] || 'rgba(0,0,0,0.12)' }}
+                />
+                <span className='legend-label'>{c}</span>
+              </div>
+            ))}
+          </div>
         </div>
         <button className='btn' disabled={isSubmitting}>
           {isSubmitting ? (

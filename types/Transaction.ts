@@ -3,5 +3,6 @@ export interface Transaction {
   text: string;
   amount: number;
   userId: string;
-  createdAt: Date;
+  category?: string | null;
+  createdAt: string;
 }

@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 interface TransactionData {
   text: string;
   amount: number;
+  category?: string | null;
 }
 
 interface TransactionResult {
@@ -24,6 +25,8 @@ async function addTransaction(formData: FormData): Promise<TransactionResult> {
 
   const text: string = textValue.toString(); // Ensure text is a string
   const amount: number = parseFloat(amountValue.toString()); // Parse amount as number
+  const categoryValue = formData.get('category');
+  const category = categoryValue ? categoryValue.toString() : null;
 
   // Get logged in user
   const { userId } = auth();
@@ -34,12 +37,19 @@ async function addTransaction(formData: FormData): Promise<TransactionResult> {
   }
 
   try {
+    // Build data object dynamically to avoid TypeScript errors until Prisma client is regenerated
+    const dataToCreate: any = {
+      text,
+      amount,
+      userId,
+    };
+
+    if (category) {
+      dataToCreate.category = category;
+    }
+
     const transactionData: TransactionData = await db.transaction.create({
-      data: {
-        text,
-        amount,
-        userId,
-      },
+      data: dataToCreate,
     });
 
     revalidatePath('/');

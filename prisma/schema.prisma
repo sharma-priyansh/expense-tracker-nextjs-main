@@ -28,6 +28,8 @@ model Transaction {
   id  String @id @default(uuid())
   text  String
   amount  Float
+  // Category for the transaction (e.g. Food, Travel, Utilities)
+  category String?
   // Relation to user
   userId  String
   user User @relation(fields: [userId], references: [clerkUserId], onDelete: Cascade)
