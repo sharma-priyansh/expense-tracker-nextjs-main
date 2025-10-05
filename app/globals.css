@@ -7,14 +7,24 @@
   --muted: #dedede;
   --btn-ease: cubic-bezier(.2,.9,.3,1);
   --btn-duration: 220ms;
+  /* page background accents */
+  --bg-top: #ffffff; /* very light */
+  --bg-bottom: #ffecec; /* slightly stronger warm/pink tint */
 }
 
 * {
   box-sizing: border-box;
 }
 
+html, body { height: 100%; }
+
 body {
-  background-color: #f9fafb;
+  /* soft diagonal gradient with slightly stronger radial accents for visibility (warm red/pink hue) */
+  background-color: var(--bg-top);
+  background-image: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-bottom) 100%), radial-gradient(circle at 10% 14%, rgba(255,140,128,0.10), transparent 18%), radial-gradient(circle at 90% 86%, rgba(255,100,100,0.06), transparent 22%);
+  background-attachment: fixed;
+  background-size: cover, 540px 540px, 900px 900px;
+  background-repeat: no-repeat;
   min-height: 100vh;
   margin: 0;
   font-family: 'Lato', sans-serif;
